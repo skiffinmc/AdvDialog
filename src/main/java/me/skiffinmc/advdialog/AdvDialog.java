@@ -1,7 +1,7 @@
 package me.skiffinmc.advdialog;
 
 import me.skiffinmc.advdialog.command.Test;
-import me.skiffinmc.advdialog.dialog.DialogData;
+import me.skiffinmc.advdialog.dialog.storage.DialogData;
 import me.skiffinmc.advdialog.listener.PlayerListener;
 import me.skiffinmc.advdialog.dialog.DialogManager;
 import org.bukkit.plugin.PluginManager;

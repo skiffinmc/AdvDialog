@@ -1,4 +1,4 @@
-package me.skiffinmc.advdialog.dialog;
+package me.skiffinmc.advdialog.dialog.storage;
 
 import java.util.ArrayList;
 import java.util.List;

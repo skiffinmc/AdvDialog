@@ -1,13 +1,11 @@
-package me.skiffinmc.advdialog.dialog;
+package me.skiffinmc.advdialog.dialog.storage;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 import com.google.gson.stream.JsonReader;
 import me.skiffinmc.advdialog.AdvDialog;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -50,30 +48,21 @@ public class DialogData {
     }
 
     /**
-     * Loads the dialog, that corresponds to the dialogID
-     * from the dialog.json file, into Java object
+     * Loads the dialog from specified json file
      *
-     * @param dialogID the id of the dialog to load
+     * @param dialogFile the name of the dialog file to load. Do not include the extension.
      * @return true if loaded successfully, false if not
      */
-    public boolean loadDialog(String dialogID) {
+    public boolean loadDialog(String dialogFile) {
         try {
-
             DialogNode[] nodes;
-            JsonReader jsonReader = new JsonReader(new FileReader(AdvDialog.instance.getDataFolder() + "/dialog.json"));
+            JsonReader jsonReader = new JsonReader(new FileReader(AdvDialog.instance.getDataFolder() + "/" + dialogFile + ".json"));
 
             AdvDialog.instance.getLogger().info("Loaded dialog JSON");
 
             Gson gson = new Gson();
             nodes = gson.fromJson(jsonReader, DialogNode[].class);
             this.nodes = Arrays.asList(nodes);
-
-            System.out.println(nodes.length);
-
-            System.out.println(getNodeById("start").getPrompt());
-            for (DialogOption option : getNodeById("start").getOptions()) {
-                System.out.println(option.getPrompt());
-            }
 
         } catch (FileNotFoundException e) {
             return false;

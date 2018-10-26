@@ -1,5 +1,6 @@
 package me.skiffinmc.advdialog.dialog;
 
+import me.skiffinmc.advdialog.dialog.storage.DialogData;
 import org.bukkit.entity.Player;
 
 /**
