@@ -1,0 +1,8 @@
+name: AdvDialog
+version: 0.0
+author: skiffinmc
+main: me.skiffinmc.advdialog.AdvDialog
+commands:
+  test:
+    description: Test command
+    usage: /test
