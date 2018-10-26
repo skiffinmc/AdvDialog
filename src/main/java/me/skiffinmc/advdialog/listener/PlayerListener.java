@@ -1,7 +1,7 @@
 package me.skiffinmc.advdialog.listener;
 
-import me.skiffinmc.advdialog.util.User;
-import me.skiffinmc.advdialog.util.UserManager;
+import me.skiffinmc.advdialog.dialog.Dialog;
+import me.skiffinmc.advdialog.dialog.DialogManager;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -30,17 +30,14 @@ public class PlayerListener implements Listener {
     public void onPlayerChatEvent(AsyncPlayerChatEvent e) {
         Player p = e.getPlayer();
 
-        if (!UserManager.containsUser(p.getUniqueId())) {
-            for (User user : UserManager.getUsers().values()) {
-                e.getRecipients().remove(user.getPlayer());
+        if (!DialogManager.isUserInDialog(p.getUniqueId())) {
+            for (Dialog dialog : DialogManager.getDialogs().values()) {
+                e.getRecipients().remove(dialog.getPlayer());
             }
         } else {
             e.setCancelled(true);
-            User user = UserManager.getUser(p.getUniqueId());
-
-            if (user.hasDialog()) {
-                user.getDialog().sendInput(e.getMessage());
-            }
+            Dialog dialog = DialogManager.getPlayerDialog(p.getUniqueId());
+            dialog.sendInput(e.getMessage());
         }
     }
 }

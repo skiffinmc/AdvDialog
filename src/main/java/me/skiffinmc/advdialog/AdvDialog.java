@@ -1,8 +1,9 @@
 package me.skiffinmc.advdialog;
 
 import me.skiffinmc.advdialog.command.Test;
+import me.skiffinmc.advdialog.dialog.DialogData;
 import me.skiffinmc.advdialog.listener.PlayerListener;
-import me.skiffinmc.advdialog.util.UserManager;
+import me.skiffinmc.advdialog.dialog.DialogManager;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -25,14 +26,21 @@ import org.bukkit.plugin.java.JavaPlugin;
  */
 public class AdvDialog extends JavaPlugin {
 
-    private static UserManager userManager = new UserManager();
+    //TODO remove
+    public static DialogData data = new DialogData();
+
+    public static AdvDialog instance;
 
     @Override
     public void onEnable() {
         PluginManager pm = getServer().getPluginManager();
+        DialogManager.initialize(this);
 
         registerListeners(pm);
         registerCommands();
+
+        AdvDialog.instance = this;
+        data.loadDialog("dialog1");
     }
 
     @Override
@@ -44,14 +52,14 @@ public class AdvDialog extends JavaPlugin {
      * Register listeners
      * @param pm plugin manager
      */
-    public void registerListeners(PluginManager pm) {
+    private void registerListeners(PluginManager pm) {
         pm.registerEvents(new PlayerListener(), this);
     }
 
     /**
      * Registers commands
      */
-    public void registerCommands() {
+    private void registerCommands() {
         this.getCommand("test").setExecutor(new Test());
     }
 }

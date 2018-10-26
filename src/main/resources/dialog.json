@@ -1,0 +1,43 @@
+[
+  {
+    "id": "dialog1",
+    "nodes": [
+      {
+        "id": "start",
+        "prompt": "hello welcome $player_name",
+        "options": [
+          {
+            "alias": [
+              "1",
+              "continue"
+            ],
+            "prompt": "1. Continue",
+            "action": "dialog:goto:continued"
+          },
+          {
+            "alias": [
+              "2",
+              "exit"
+            ],
+            "prompt": "2. Exit",
+            "action": "dialog:exit"
+          }
+        ]
+      },
+      {
+        "id": "continued",
+        "prompt": "you have continued",
+        "options": [
+          {
+            "prompt": "1. Exit",
+            "alias": [
+              "1",
+              "exit"
+            ],
+            "action": "dialog:exit"
+          }
+        ]
+      }
+    ]
+  }
+]

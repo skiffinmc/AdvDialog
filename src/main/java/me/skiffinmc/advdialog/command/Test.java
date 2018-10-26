@@ -1,7 +1,7 @@
 package me.skiffinmc.advdialog.command;
 
-import me.skiffinmc.advdialog.dialog.SimpleDialog;
-import me.skiffinmc.advdialog.util.UserManager;
+import me.skiffinmc.advdialog.AdvDialog;
+import me.skiffinmc.advdialog.dialog.DialogManager;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -14,7 +14,9 @@ public class Test implements CommandExecutor {
         if (commandSender instanceof Player) {
             Player player = (Player) commandSender;
             player.setLevel(player.getLevel() + 2);
-            UserManager.addUser(player, new SimpleDialog());
+
+
+            DialogManager.addDialog(player, AdvDialog.data);
         }
 
         return true;
